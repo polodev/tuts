@@ -1,0 +1,265 @@
+---
+title: mysql-101
+layout: post
+---
+sql is declarative language. I mean what you want you can ask.       
+some terminology of sql        
+
+* DB - database
+* DBA - database administrator
+* DBMS - database management system
+* RDBMS - relational database management system
+* ddl - data definition language (creating table, altering table, primary key, foreign key)   
+* dml - (data manipulation language create read update delete - CRUD)
+
+# mysql 101  - Crud in mysql          
+* mysql is not case sensitive 
+* USING UPPERCASE IS GOOD PRACTICE
+
+### to login to mysql
+
+~~~php
+mysql -uroot -p
+~~~
+
+### to show all databases
+
+~~~php
+show databases;
+~~~
+
+### to create a database 
+
+~~~php
+create database <databaseName>;
+~~~
+
+### to drop a database 
+
+~~~php
+drop database college;
+# with condition
+drop database  if exists college;
+~~~
+
+### to use a database 
+
+~~~php
+use <dbname>;
+~~~
+
+### list all tables 
+
+~~~php
+show tables;
+~~~
+
+### to create a table 
+
+~~~php
+# parent first approach when comes to foreign key
+create table <tablename> (
+  id int(11) auto_increment primary key, 
+  name varchar(30) not null,
+  email varchar(30)
+);
+~~~
+
+### to drop a table 
+
+~~~php
+# child first approach
+drop table if exists departments;
+drop table if exists subjects;
+~~~
+
+### to know structure of table 
+
+~~~php
+describe <tableName>;
+~~~
+
+
+### insert into database (c -  crud)
+
+~~~php
+insert into <tableName> (<column1>, <column2>) values('column1_value', 'column2_value'); 
+~~~
+
+### retrieve/read data from database  (r -  crud)
+
+~~~php
+select <column> from <tablename>;
+
+### for getting all results 
+select * from <tablename> ;
+~~~
+
+### Update database value (u -  crud)
+
+~~~php
+update <tableName> set <columnName>=<columnValue> where id=<somevalue>;
+~~~
+
+### delete table row (d -  crud)
+
+~~~php
+delete from <tableName> where <columnName>=<columnValue>;
+~~~
+
+
+## creating a table - back-tic for escaping character
+
+~~~php
+create table cities (
+  id int(11) auto_increment primary key,
+  name varchar(30)
+);
+
+create table cities (
+  id int(11) auto_increment,
+  name varchar(30),
+  primary key(id)
+);
+
+# with back-tic as escaping character    
+create table cities (
+  id serial,
+  name varchar(30)
+);
+~~~
+
+
+## table with foreign key
+
+~~~php
+create table people (
+  id int(11) auto_increment primary key,
+  first_name varchar(30) not null,
+  last_name varchar(30) not null,
+  email varchar(30),
+  # structures should be like parent table
+  city_id int(11),
+  foreign key(city_id) references cities(id) 
+);
+
+create table people (
+  id int(11) auto_increment primary key,
+  first_name varchar(30) not null,
+  last_name varchar(30) not null,
+  email varchar(30),
+  city_id bigint(20) unsigned,
+  foreign key(city_id) references cities(id) on delete cascade
+);
+~~~
+
+## knowing table structures 
+
+~~~php
+show columns from cities;
+# or
+show columns from databasename.table;
+# or
+describe cities;
+~~~
+
+## inserting data into database    
+
+~~~php
+insert into cities values(1, 'Feni');
+# or
+insert into cities (name) values('Feni');
+# or
+insert into cities set name='Feni';
+~~~
+
+## inserting multiple values in table
+
+~~~php
+insert into people(first_name, last_name, email, city_id) values
+('Parvez', 'Ahmed', 'parvez@gmai.com', 1),
+('Helal', 'Ahmed', 'helal@gmai.com', 1),
+('Sarif', 'Ahmed', 'sarif@gmai.com', 2)
+~~~
+
+## some mysql functions 
+
+* `count(value)`    
+* `concat(value, ' ', value, ' ', value)`
+* `concat_ws(separtor, value, value)`
+* upper
+* lower
+* reverse
+* avg
+* sum
+* min
+* max
+* left(title, 3)
+* right(title, 3)
+
+## join query 
+
+~~~php
+select * from people join cities where cities.id=people.city_id;
+~~~
+
+## altering table 
+
+~~~php
+# adding new column in table
+alter table people add address varchar(255);
+# adding new column with default value
+alter table people add address varchar(255) default 'ssk road feni';
+# for appearing after id
+alter table people add address varchar(255) after id;
+# for appearing in first 
+alter table people add address varchar(255) first;
+alter table people modify address varchar(255) default 'ssk road feni' first;
+~~~
+
+## truncating table 
+
+~~~php
+truncate people;
+~~~
+
+## how to export database 
+
+~~~php
+mysqldump -uroot -p people > filename.sql
+~~~
+
+## how to import to database 
+
+~~~php
+mysql -uroot -p people < filename.sql
+~~~
+
+## how to view select query horizontally 
+
+~~~php
+select * from people\G
+~~~
+
+## some wild card
+
+~~~php
+like "%category_name%" 
+like "_ategory_name%" 
+~~~
+
+## fetching data from table using pivot table   
+
+~~~php
+select subjects.name, departments.name from department_subject
+join departments on department_subject.department_id = departments.id
+join subjects on department_subject.subject_id = subjects.id
+~~~
+
+
+
+
+
+
+
+
