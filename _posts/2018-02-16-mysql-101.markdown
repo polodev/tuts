@@ -256,6 +256,12 @@ join departments on department_subject.department_id = departments.id
 join subjects on department_subject.subject_id = subjects.id
 ~~~
 
+## copy one database table to another database 
+
+~~~sql 
+mysqldump -uroot db1 | mysql -uroot db2
+~~~
+
 
 
 
