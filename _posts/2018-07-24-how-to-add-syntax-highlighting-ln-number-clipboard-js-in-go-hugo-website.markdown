@@ -113,6 +113,37 @@ copyCode.on('error', function(event) {
 
 ~~~
 
+# Using `highlightjs` alongside `Pygments`.  - not necessary at all
+
+If you want to add `highlightjs` alongside this `Pygments` first add css and js of highlights js
+
+~~~html
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css'/>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'></script>
+~~~
+# instantiate `highlightjs`
+~~~js
+hljs.initHighlightingOnLoad();
+~~~
+
+# adding copy button by filtering already added `copy-button` in `pygments` block
+
+~~~js
+var pres = document.querySelectorAll('pre');
+pres.forEach(function (pre, i) {
+  if (pre.parentNode.nodeName !== 'TD') {
+    var isLanguage = pre.children[0].className.indexOf('language-');
+    if ( isLanguage === 0 ) {
+      var button = document.createElement('button');
+      button.className = 'copy-button';
+      button.textContent = 'Copy';
+      pre.appendChild(button);
+    }
+  }
+})
+~~~
+
+
 
 Thats all. Thank you
 
