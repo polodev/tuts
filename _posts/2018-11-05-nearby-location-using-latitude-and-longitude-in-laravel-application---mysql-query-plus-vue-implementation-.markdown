@@ -140,3 +140,13 @@ export default {
 }
 ~~~
 
+## calling vue from laravel blade file 
+
+~~~html
+<div id='vue-app'>
+  <app-location
+    app_url="{{request()->root()}}"
+    asset_domain="{{config('app.asset_domain')}}"
+  ></app-location>
+</div>
+~~~
