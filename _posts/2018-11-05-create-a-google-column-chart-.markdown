@@ -85,4 +85,8 @@ Array
 
 )
 ~~~
- 
+
+### for pie chart we don't need 3rd column (style column where I add color)
+~~~js
+var chart = new google.visualization.PieChart(document.getElementById('restaurant_rating'));
+~~~
