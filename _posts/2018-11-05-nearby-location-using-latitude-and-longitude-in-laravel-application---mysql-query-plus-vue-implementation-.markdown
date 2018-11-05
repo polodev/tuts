@@ -51,7 +51,7 @@ LIMIT
  }
 ~~~
 
-### Vue code 
+## Vue code 
 
 ### Vue template
 ~~~html
