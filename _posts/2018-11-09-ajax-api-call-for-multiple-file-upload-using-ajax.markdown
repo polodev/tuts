@@ -4,21 +4,22 @@ layout: post
 ---
 # upload php view file 
 
+
 ~~~html
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Important Owl stylesheet -->
-	<!-- <link rel="stylesheet" href="<?php/// echo base_url('/assets/site/css/owl.carousel.css'); ?>"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Important Owl stylesheet -->
+  <!-- <link rel="stylesheet" href="<?php/// echo base_url('/assets/site/css/owl.carousel.css'); ?>"> -->
 
-	<!-- Default Theme -->
-	<!-- <link rel="stylesheet" href="<?php// echo base_url('/assets/site/css/owl.theme.default.min.css'); ?>"> -->
+  <!-- Default Theme -->
+  <!-- <link rel="stylesheet" href="<?php// echo base_url('/assets/site/css/owl.theme.default.min.css'); ?>"> -->
 
-	<!-- <link rel="stylesheet" type="text/css" href="<?php///echo base_url('/assets/site/css/style.css'); ?>"> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/site/css/style.css'); ?>">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="<?php///echo base_url('/assets/site/css/style.css'); ?>"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/site/css/style.css'); ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src='https://code.jquery.com/jquery-3.3.1.js'></script>
 <style>
 form h2 {
@@ -101,19 +102,19 @@ button.submit {
 <body>
 
 <div class="site-section">
-	<div class="container">
-		<div class="main-content">
-			<h1 class="my-account">Document Upload</h1>
-			<div class="row">
-				<div class="col-md-3">
-					<?php $this->load->view('front/left_menus'); ?>
-				</div>
-				<div class="col-md-9">
-					<div  class="panel panel-info">
-						<div class="panel-heading">
-							<h3 class="panel-title" style="text-transform: uppercase;"><?php echo $this->session->userdata('firstname');?></h3>
-						</div>
-						<div class="panel-body">
+  <div class="container">
+    <div class="main-content">
+      <h1 class="my-account">Document Upload</h1>
+      <div class="row">
+        <div class="col-md-3">
+          <?php $this->load->view('front/left_menus'); ?>
+        </div>
+        <div class="col-md-9">
+          <div  class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title" style="text-transform: uppercase;"><?php echo $this->session->userdata('firstname');?></h3>
+            </div>
+            <div class="panel-body">
                   <form
                     data-action="<?php echo base_url('front/upload_doc_ajax/');?>"
                    role="form" id="form" action="<?php echo base_url('front/upload_doc/');?>" method="POST" enctype="multipart/form-data">
@@ -162,14 +163,14 @@ button.submit {
                       </div>
                   </form>
 
-						</div>
+            </div>
 
-					</div>
-				</div>
-			</div>
-		</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-	</div>
+  </div>
 </div>
 <script>
 (function () {
@@ -296,7 +297,9 @@ var app = {
                     console.log('percentComplete', percentComplete);
                     this.$label.html(this.label_spinner + ' ' + percentComplete + '%');
                     if (percentComplete > 99) {
-                       this.$label.html(this.label_content);
+                      setTimeout(() => {
+                         this.$label.html(this.label_content);
+                      }, 1000)
                     }
                 }
             }, false);
@@ -340,8 +343,8 @@ app.init();
 </script>
 </body>
 </html>
-
 ~~~
+
 
 # controller file 
 ~~~php
