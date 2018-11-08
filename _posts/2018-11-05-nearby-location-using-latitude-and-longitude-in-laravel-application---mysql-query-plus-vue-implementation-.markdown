@@ -55,6 +55,7 @@ LIMIT
 
 ### Vue template
 ~~~html
+{% raw %}
 <template>
 <div v-if="restaurants.length" class='row'>
   <div id="location_component">
@@ -78,6 +79,7 @@ LIMIT
   </div>
 </div>
 </template>
+{% endraw %}
 ~~~
 
 #### Vue js 
@@ -143,10 +145,13 @@ export default {
 ## calling vue from laravel blade file 
 
 ~~~html
+{% raw %}
+
 <div id='vue-app'>
   <app-location
     app_url="{{request()->root()}}"
     asset_domain="{{config('app.asset_domain')}}"
   ></app-location>
 </div>
+{% endraw %}
 ~~~

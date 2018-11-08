@@ -42,12 +42,14 @@ if (localStorage.getItem('user_lang')) {
 ## language icon for changing language manually 
 
 ~~~html
+{% raw %}
 <div class="language-changer">
   <p><a href="<?= (@end(explode('@', request()->route()->getAction('controller'))) == 'catmenu') ? action('frontEndController@language', ['lan' => 'en']) : '#'; ?>" class="en"><img src="{{ asset('img/en.png') }}" alt="Language icon is not available"></a></p>
   <p>
     <a href="<?= (@end(explode('@', request()->route()->getAction('controller'))) == 'catmenu') ? action('frontEndController@language', ['lan' => 'he']) : '#'; ?>" class="il"><img src="{{ asset('img/il.png') }}" alt="Language icon is not available"></a>
   </p>
 </div>
+{% endraw %}
 ~~~
 
 ## click event when user click on language changing button
