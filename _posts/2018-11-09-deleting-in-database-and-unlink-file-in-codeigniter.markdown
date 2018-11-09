@@ -4,12 +4,6 @@ layout: post
 ---
 # controller code 
 ~~~php
-public function attachments_by_clients_web_id()
-{
-  $id = $this->session->userdata( 'id' );
-  $attachments = $this->user_model->attachments_by_clients_web_id($id);
-  echo json_encode($attachments);
-}
 public function delete_attachment() {
   $id = $this->input->post( 'id') ;
   $this->db->select( '*' );
@@ -26,6 +20,12 @@ public function delete_attachment() {
       $this->attachments_by_clients_web_id();
   }
   return;
+}
+public function attachments_by_clients_web_id()
+{
+  $id = $this->session->userdata( 'id' );
+  $attachments = $this->user_model->attachments_by_clients_web_id($id);
+  echo json_encode($attachments);
 }
 ~~~
 
